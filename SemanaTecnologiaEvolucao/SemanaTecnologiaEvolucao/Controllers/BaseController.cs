@@ -9,13 +9,13 @@ namespace SemanaTecnologiaEvolucao.Controllers
 {
     public class BaseController : Controller
     {
-        private MongoDatabase _database;
+        public MongoDatabase database;
         public BaseController()
         {
             const string connectionstring = "mongodb://localhost";
             var client = new MongoClient(connectionstring);
             var server = client.GetServer();
-            _database = server.GetDatabase("SemanaTecnologia");
+            database = server.GetDatabase("SemanaTecnologia");
         }
     }
 }
