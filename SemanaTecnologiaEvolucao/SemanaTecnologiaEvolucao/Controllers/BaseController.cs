@@ -12,6 +12,14 @@ namespace SemanaTecnologiaEvolucao.Controllers
         public MongoDatabase database;
         public BaseController()
         {
+            //var credential = MongoCredential.CreateMongoCRCredential("test", "user1", "password1");
+            //var settings = new MongoClientSettings
+            //{
+            //    Credentials = new[] { credential }
+            //};
+
+            //var mongoClient = new MongoClient(settings);
+            
             const string connectionstring = "mongodb://iransyber.southcentralus.cloudapp.azure.com";
             var client = new MongoClient(connectionstring);
             var server = client.GetServer();

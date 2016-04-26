@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MongoDB.Driver;
+using SemanaTecnologiaEvolucao.Models;
 
 namespace SemanaTecnologiaEvolucao.Interfaces
 {
     public interface ITrabalhos
     {
-        MongoCollection ListarApresentacoes();
+        IList<Trabalhos> ListarApresentacoes();
     }
 }
