@@ -12,7 +12,7 @@ namespace SemanaTecnologiaEvolucao.Controllers
         public MongoDatabase database;
         public BaseController()
         {
-            const string connectionstring = "mongodb://localhost";
+            const string connectionstring = "mongodb://iransyber.southcentralus.cloudapp.azure.com";
             var client = new MongoClient(connectionstring);
             var server = client.GetServer();
             database = server.GetDatabase("SemanaTecnologia");
