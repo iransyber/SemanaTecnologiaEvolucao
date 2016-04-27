@@ -18,12 +18,12 @@ namespace SemanaTecnologiaEvolucao.Models
     public class AgendaSemanaTecnologia: BaseController, ITrabalhos
     {
 
-        public async Task<List<Trabalhos>> ListarApresentacoesAssync()
+        public List<Trabalhos> ListarApresentacoesAssync()
         {
             //var filter = new BsonDocument();
             var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
             var trab = database.GetCollection<Trabalhos>("Trabalhos");
-            var r = await Task.Run(() =>  trab.Find(quer));
+            var r = trab.Find(quer);
 
             return r.ToList();
         }

@@ -27,7 +27,7 @@ namespace SemanaTecnologiaEvolucao.Controllers
         public JsonResult<List<Trabalhos>> Listar()
         {
             var resultado = interfa.ListarApresentacoesAssync();
-            return Json(resultado.Result);
+            return Json(resultado);
         }
     }
 }

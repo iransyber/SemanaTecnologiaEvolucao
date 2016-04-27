@@ -11,6 +11,6 @@ namespace SemanaTecnologiaEvolucao.Interfaces
     public interface ITrabalhos
     {
         List<Trabalhos> ListarApresentacoes();
-        Task<List<Trabalhos>> ListarApresentacoesAssync();
+        List<Trabalhos> ListarApresentacoesAssync();
     }
 }
