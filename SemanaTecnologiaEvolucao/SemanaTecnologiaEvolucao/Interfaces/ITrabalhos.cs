@@ -12,5 +12,6 @@ namespace SemanaTecnologiaEvolucao.Interfaces
     {
         List<Trabalhos> FiltrarTrabalhos(string param);
         List<Trabalhos> ListarApresentacoesAssync();
+        Trabalhos Inserir(Trabalhos trabalho);
     }
 }
