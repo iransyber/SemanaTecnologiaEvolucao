@@ -24,10 +24,10 @@ namespace SemanaTecnologiaEvolucao.Controllers
 
         [Route("Listar")]
         [HttpGet]
-        public JsonResult<string> Listar()
+        public JsonResult<List<Trabalhos>> Listar()
         {
-            var resultado = interfa.ListarApresentacoes().ToString();
-            return Json(resultado,new JsonSerializerSettings());
+            var resultado = interfa.ListarApresentacoesAssync();
+            return Json(resultado.Result);
         }
     }
 }
