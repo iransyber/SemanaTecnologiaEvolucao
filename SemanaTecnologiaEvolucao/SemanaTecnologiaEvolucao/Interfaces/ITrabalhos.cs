@@ -10,7 +10,7 @@ namespace SemanaTecnologiaEvolucao.Interfaces
 {
     public interface ITrabalhos
     {
-        List<Trabalhos> ListarApresentacoes();
+        List<Trabalhos> FiltrarTrabalhos(string param);
         List<Trabalhos> ListarApresentacoesAssync();
     }
 }

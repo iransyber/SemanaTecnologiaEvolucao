@@ -29,5 +29,13 @@ namespace SemanaTecnologiaEvolucao.Controllers
             var resultado = interfa.ListarApresentacoesAssync();
             return Json(resultado);
         }
+
+        [Route("filtrar/{param:length(1,20)}")]
+        [HttpGet]
+        public JsonResult<List<Trabalhos>> FiltrarTrabalhos(string param)
+        {
+            var resultado = interfa.FiltrarTrabalhos(param);
+            return Json(resultado);
+        }
     }
 }

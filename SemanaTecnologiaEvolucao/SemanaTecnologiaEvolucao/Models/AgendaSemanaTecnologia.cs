@@ -20,7 +20,6 @@ namespace SemanaTecnologiaEvolucao.Models
 
         public List<Trabalhos> ListarApresentacoesAssync()
         {
-            //var filter = new BsonDocument();
             var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
             var trab = database.GetCollection<Trabalhos>("Trabalhos");
             var r = trab.Find(quer);
@@ -28,36 +27,37 @@ namespace SemanaTecnologiaEvolucao.Models
             return r.ToList();
         }
 
-        public List<Trabalhos> ListarApresentacoes()
+        public List<Trabalhos> FiltrarTrabalhos(string param)
         {
-            var trab = database.GetCollection<BsonDocument>("Trabalhos");
-            var LsTrabalhos = new List<Trabalhos>();
+            var quer = Query.Matches("Descricao", param);
+            var trab = database.GetCollection<Trabalhos>("Trabalhos");
+            var r = trab.Find(quer);
 
-            //var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
-
-            //var t = new Trabalhos
-            //{
-            //    Descricao = "APLICATIVO MOBILE SEMANA TECNOLOGIA TESTE3",
-            //    DataApresentacao = new DateTime(),
-            //    Ativo = true,
-            //    Tema = "SEMANA TECNOLOGIA (JAVASCRIPT)",
-
-            //};
-
-            //trab.Insert(t.ToBsonDocument());
-
-            //var list =  trab.Find(new ));
-
-            //foreach (var l in list)
-            //{
-            //    var ll = new Trabalhos
-            //    {
-            //        Descricao = l.
-            //    }
-            //}
-
-            return null;
+            return r.ToList();
         }
 
     }
 }
+
+//var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
+
+//var t = new Trabalhos
+//{
+//    Descricao = "APLICATIVO MOBILE SEMANA TECNOLOGIA TESTE3",
+//    DataApresentacao = new DateTime(),
+//    Ativo = true,
+//    Tema = "SEMANA TECNOLOGIA (JAVASCRIPT)",
+
+//};
+
+//trab.Insert(t.ToBsonDocument());
+
+//var list =  trab.Find(new ));
+
+//foreach (var l in list)
+//{
+//    var ll = new Trabalhos
+//    {
+//        Descricao = l.
+//    }
+//}
