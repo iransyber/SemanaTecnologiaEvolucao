@@ -40,7 +40,7 @@ namespace SemanaTecnologiaEvolucao.Controllers
         
         [Route("incluir")]
         [HttpPost]
-        public JsonResult<Trabalhos> FiltrarTrabalhos([FromBody] Trabalhos trabalho)
+        public JsonResult<List<Trabalhos>> FiltrarTrabalhos([FromBody] Trabalhos trabalho)
         {
             var resultado = interfa.Inserir(trabalho);
             return Json(resultado);
