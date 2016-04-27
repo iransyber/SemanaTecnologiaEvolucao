@@ -41,7 +41,7 @@ namespace SemanaTecnologiaEvolucao.Models
             var trab = database.GetCollection<Trabalhos>("Trabalhos");
             var t = new Trabalhos
             {
-                Descricao = trabalho.Descricao.ToUPPER(),
+                Descricao = trabalho.Descricao.ToString().ToUpper(),
                 DataApresentacao = trabalho.DataApresentacao,
                 Ativo = trabalho.Ativo,
                 Tema = trabalho.Tema
