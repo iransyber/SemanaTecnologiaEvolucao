@@ -17,7 +17,7 @@ namespace SemanaTecnologiaEvolucao.Models
 {
     public class AgendaSemanaTecnologia: BaseController, ITrabalhos
     {
-
+        //Lembra de tornar a getcollection publica nesta linha ; var trab = database.GetCollection<Trabalhos>("Trabalhos");
         public List<Trabalhos> ListarApresentacoesAssync()
         {
             var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
@@ -35,29 +35,24 @@ namespace SemanaTecnologiaEvolucao.Models
 
             return r.ToList();
         }
-
+        
+        public Trabalhos Inserir(Trabalhos trabalho)
+        {
+            var trab = database.GetCollection<Trabalhos>("Trabalhos");
+            var t = new Trabalhos
+            {
+                Descricao = trabalho.Descricao.ToUPPER(),
+                DataApresentacao = new trabalho.DataApresentacao,
+                Ativo = trabalho.Ativo,
+                Tema = trabalho.Tema
+            };
+            
+            trab.Insert(t.ToBsonDocument());
+            
+            var quer = Query.Matches("Descricao", t.Descricao);
+            var r    = trab.Find(quer);
+            
+            return r;
+        }
     }
 }
-
-//var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
-
-//var t = new Trabalhos
-//{
-//    Descricao = "APLICATIVO MOBILE SEMANA TECNOLOGIA TESTE3",
-//    DataApresentacao = new DateTime(),
-//    Ativo = true,
-//    Tema = "SEMANA TECNOLOGIA (JAVASCRIPT)",
-
-//};
-
-//trab.Insert(t.ToBsonDocument());
-
-//var list =  trab.Find(new ));
-
-//foreach (var l in list)
-//{
-//    var ll = new Trabalhos
-//    {
-//        Descricao = l.
-//    }
-//}
