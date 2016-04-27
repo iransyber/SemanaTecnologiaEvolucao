@@ -42,7 +42,7 @@ namespace SemanaTecnologiaEvolucao.Models
             var t = new Trabalhos
             {
                 Descricao = trabalho.Descricao.ToUPPER(),
-                DataApresentacao = new trabalho.DataApresentacao,
+                DataApresentacao = trabalho.DataApresentacao,
                 Ativo = trabalho.Ativo,
                 Tema = trabalho.Tema
             };
