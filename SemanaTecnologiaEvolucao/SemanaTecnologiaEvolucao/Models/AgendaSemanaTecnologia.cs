@@ -36,7 +36,7 @@ namespace SemanaTecnologiaEvolucao.Models
             return r.ToList();
         }
         
-        public Trabalhos Inserir(Trabalhos trabalho)
+        public List<Trabalhos> Inserir(Trabalhos trabalho)
         {
             var trab = database.GetCollection<Trabalhos>("Trabalhos");
             var t = new Trabalhos
@@ -49,10 +49,10 @@ namespace SemanaTecnologiaEvolucao.Models
             
             trab.Insert(t.ToBsonDocument());
             
-            var quer = Query.Matches("Descricao", t.Descricao);
+            var quer = Query.EQ("Descricao", t.Descricao);
             var r    = trab.Find(quer);
             
-            return r;
+            return r.ToList();
         }
     }
 }
