@@ -12,15 +12,6 @@ namespace SemanaTecnologiaEvolucao.Controllers
         public MongoDatabase database;
         public BaseController()
         {
-            //var credential = MongoCredential.CreateMongoCRCredential("test", "user1", "password1");
-            //var settings = new MongoClientSettings
-            //{
-            //    Credentials = new[] { credential }    mongodb://iransyber:Iran10301988@ds021771.mlab.com:21771/iransyberdb?connectTimeoutMS=30000&authMechanism=SCRAM-SHA-1
-            //};
-
-            //var mongoClient = new MongoClient(settings);
-
-            //const string connectionstring = "mongodb://iransyber.southcentralus.cloudapp.azure.com";
             const string connectionstring = "mongodb://iransyber:Iran10301988@ds021771.mlab.com:21771/iransyberdb?connectTimeoutMS=30000&authMechanism=SCRAM-SHA-1";
             var client = new MongoClient(connectionstring);
             var server = client.GetServer();
