@@ -41,7 +41,7 @@ namespace SemanaTecnologiaEvolucao.Models
             var trab = database.GetCollection<Trabalhos>("Trabalhos");
             var t = new Trabalhos
             {
-                Descricao = trabalho.Descricao.ToString().ToUpper(),
+                Descricao = trabalho.Descricao.ToUpper(),
                 DataApresentacao = trabalho.DataApresentacao,
                 Ativo = trabalho.Ativo,
                 Tema = trabalho.Tema
@@ -53,6 +53,22 @@ namespace SemanaTecnologiaEvolucao.Models
             var r    = trab.Find(quer);
             
             return r.ToList();
+        }
+
+        public void Alterar(RecepTrabalhos trabalho)
+        {
+            var trab = database.GetCollection<Trabalhos>("Trabalhos");
+
+            var t = new RecepTrabalhosnoId
+            {
+                Descricao = trabalho.Descricao,
+                Tema = trabalho.Tema,
+                Ativo = trabalho.Ativo,
+                DataApresentacao = trabalho.DataApresentacao,
+                Integrantes = trabalho.Integrantes
+            };
+
+            trab.Update(Query.EQ("_id", ObjectId.Parse(trabalho.Id)), Update.Replace(t.ToBsonDocument()), UpdateFlags.Upsert);
         }
     }
 }

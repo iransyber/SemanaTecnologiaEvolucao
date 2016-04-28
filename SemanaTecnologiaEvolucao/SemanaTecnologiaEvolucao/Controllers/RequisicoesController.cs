@@ -44,6 +44,13 @@ namespace SemanaTecnologiaEvolucao.Controllers
         {
             var resultado = interfa.Inserir(trabalho);
             return Json(resultado);
-        }        
+        }
+
+        [Route("editar")]
+        [HttpPost]
+        public void editar([FromBody] RecepTrabalhos trabalho)
+        {
+            interfa.Alterar(trabalho);
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using SemanaTecnologiaEvolucao.Models;
 
@@ -13,5 +14,6 @@ namespace SemanaTecnologiaEvolucao.Interfaces
         List<Trabalhos> FiltrarTrabalhos(string param);
         List<Trabalhos> ListarApresentacoesAssync();
         List<Trabalhos> Inserir(Trabalhos trabalho);
+        void Alterar(RecepTrabalhos trabalho);
     }
 }

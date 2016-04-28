@@ -274,6 +274,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Nivel.cs" />
     <Compile Include="Models\Nota.cs" />
+    <Compile Include="Models\RecepTrabalhosnoId.cs" />
+    <Compile Include="Models\RecepTrabalhos.cs" />
     <Compile Include="Models\Trabalhos.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
