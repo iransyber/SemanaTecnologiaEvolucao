@@ -20,9 +20,8 @@ namespace SemanaTecnologiaEvolucao.Models
 
         public List<Trabalhos> ListarApresentacoesAssync()
         {
-            var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
             var trab = database.GetCollection<Trabalhos>("Trabalhos");
-            var r = trab.Find(quer);
+            var r = trab.FindAll().ToList();
 
             return r.ToList();
         }
