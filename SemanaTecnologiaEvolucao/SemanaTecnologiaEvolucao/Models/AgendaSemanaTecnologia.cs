@@ -17,7 +17,7 @@ namespace SemanaTecnologiaEvolucao.Models
 {
     public class AgendaSemanaTecnologia: BaseController, ITrabalhos
     {
-
+        //Lembra de tornar a getcollection publica nesta linha ; var trab = database.GetCollection<Trabalhos>("Trabalhos");
         public List<Trabalhos> ListarApresentacoesAssync()
         {
             var trab = database.GetCollection<Trabalhos>("Trabalhos");
@@ -34,29 +34,40 @@ namespace SemanaTecnologiaEvolucao.Models
 
             return r.ToList();
         }
+        
+        public List<Trabalhos> Inserir(Trabalhos trabalho)
+        {
+            var trab = database.GetCollection<Trabalhos>("Trabalhos");
+            var t = new Trabalhos
+            {
+                Descricao = trabalho.Descricao.ToUpper(),
+                DataApresentacao = trabalho.DataApresentacao,
+                Ativo = trabalho.Ativo,
+                Tema = trabalho.Tema
+            };
+            
+            trab.Insert(t.ToBsonDocument());
+            
+            var quer = Query.EQ("Descricao", t.Descricao);
+            var r    = trab.Find(quer);
+            
+            return r.ToList();
+        }
 
+        public void Alterar(RecepTrabalhos trabalho)
+        {
+            var trab = database.GetCollection<Trabalhos>("Trabalhos");
+
+            var t = new RecepTrabalhosnoId
+            {
+                Descricao = trabalho.Descricao,
+                Tema = trabalho.Tema,
+                Ativo = trabalho.Ativo,
+                DataApresentacao = trabalho.DataApresentacao,
+                Integrantes = trabalho.Integrantes
+            };
+
+            trab.Update(Query.EQ("_id", ObjectId.Parse(trabalho.Id)), Update.Replace(t.ToBsonDocument()), UpdateFlags.Upsert);
+        }
     }
 }
-
-//var quer = Query.EQ("Descricao", "APLICATIVO MOBILE SEMANA TECNOLOGIA");
-
-//var t = new Trabalhos
-//{
-//    Descricao = "APLICATIVO MOBILE SEMANA TECNOLOGIA TESTE3",
-//    DataApresentacao = new DateTime(),
-//    Ativo = true,
-//    Tema = "SEMANA TECNOLOGIA (JAVASCRIPT)",
-
-//};
-
-//trab.Insert(t.ToBsonDocument());
-
-//var list =  trab.Find(new ));
-
-//foreach (var l in list)
-//{
-//    var ll = new Trabalhos
-//    {
-//        Descricao = l.
-//    }
-//}

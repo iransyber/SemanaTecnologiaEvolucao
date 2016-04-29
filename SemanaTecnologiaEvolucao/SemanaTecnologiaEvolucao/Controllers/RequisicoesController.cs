@@ -37,5 +37,20 @@ namespace SemanaTecnologiaEvolucao.Controllers
             var resultado = interfa.FiltrarTrabalhos(param);
             return Json(resultado);
         }
+        
+        [Route("incluir")]
+        [HttpPost]
+        public JsonResult<List<Trabalhos>> FiltrarTrabalhos([FromBody] Trabalhos trabalho)
+        {
+            var resultado = interfa.Inserir(trabalho);
+            return Json(resultado);
+        }
+
+        [Route("editar")]
+        [HttpPost]
+        public void editar([FromBody] RecepTrabalhos trabalho)
+        {
+            interfa.Alterar(trabalho);
+        }
     }
 }
