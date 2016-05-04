@@ -12,6 +12,7 @@ using SemanaTecnologiaEvolucao.Models;
 
 namespace SemanaTecnologiaEvolucao.Controllers
 {
+    [Authorize]
     [RoutePrefix("Api")]
     public class RequisicoesController : ApiController
     {

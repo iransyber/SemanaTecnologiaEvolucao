@@ -267,9 +267,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\ITrabalhos.cs" />
-    <Compile Include="Migrations\201605021704308_Inicio da base de dados.cs" />
-    <Compile Include="Migrations\201605021704308_Inicio da base de dados.Designer.cs">
-      <DependentUpon>201605021704308_Inicio da base de dados.cs</DependentUpon>
+    <Compile Include="Migrations\201605041412217_Iniciando novamente.cs" />
+    <Compile Include="Migrations\201605041412217_Iniciando novamente.Designer.cs">
+      <DependentUpon>201605041412217_Iniciando novamente.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -277,6 +277,8 @@
     <Compile Include="Models\AgendaSemanaTecnologia.cs" />
     <Compile Include="Models\Enquete.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Identity\ServPasswordHasher.cs" />
+    <Compile Include="Models\Identity\ServUserStore.cs" />
     <Compile Include="Models\Nivel.cs" />
     <Compile Include="Models\Nota.cs" />
     <Compile Include="Models\RecepTrabalhosnoId.cs" />
@@ -1076,6 +1078,7 @@
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="CustompageErr.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1160,8 +1163,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201605021704308_Inicio da base de dados.resx">
-      <DependentUpon>201605021704308_Inicio da base de dados.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201605041412217_Iniciando novamente.resx">
+      <DependentUpon>201605041412217_Iniciando novamente.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

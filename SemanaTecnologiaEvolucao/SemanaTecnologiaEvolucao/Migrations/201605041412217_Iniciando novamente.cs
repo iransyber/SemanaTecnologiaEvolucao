@@ -3,7 +3,7 @@ namespace SemanaTecnologiaEvolucao.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Iniciodabasededados : DbMigration
+    public partial class Iniciandonovamente : DbMigration
     {
         public override void Up()
         {
@@ -13,7 +13,7 @@ namespace SemanaTecnologiaEvolucao.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         CodigoFaculdade = c.String(),
-                        Nome = c.String(),
+                        UserName = c.String(),
                         Senha = c.String(),
                         Ativo = c.Boolean(nullable: false),
                         Nivel = c.Int(nullable: false),
