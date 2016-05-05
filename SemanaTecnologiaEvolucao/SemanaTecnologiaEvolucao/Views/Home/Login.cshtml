@@ -2,19 +2,17 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html  ng-app="appapi">
 <head>
     <meta charset="utf-8">
-<<<<<<< HEAD
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>.:Semana da Tecnologia:. | Log in</title>
-=======
     <title>.:Semana da Tecnologia:. | Login</title>
->>>>>>> 1d2873e0126edbcb3455be73717c0f1d08eed0e7
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
     <link rel="stylesheet" href="/Content/bootstrap/css/bootstrap.min.css">
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/controller/logins.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
@@ -24,7 +22,7 @@
     <!-- iCheck -->
     <link rel="stylesheet" href="/Content/plugins/iCheck/square/blue.css">
 </head>
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" ng-controller="logonservices">
     <div class="login-box">
         <div class="login-logo">
             <b>Admin</b> Login
@@ -33,11 +31,11 @@
             <p class="login-box-msg">Efetue seu Login</p>
             <form action="#" method="post">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" placeholder="Usuario">
+                    <input type="text" class="form-control" placeholder="Usuario" ng-model="userLoginEmail">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" class="form-control" placeholder="Password" ng-model="userLoginPassword">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
@@ -49,7 +47,7 @@
                         </div>
                     </div><!-- /.col -->
                     <div class="col-xs-4">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Logar</button>
+                        <button type="button" class="btn btn-primary btn-block btn-flat" ng-click="login()">Logar</button>
                     </div><!-- /.col -->
                 </div>
             </form>

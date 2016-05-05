@@ -1,9 +1,10 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="appapi">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Dashboard</title>
+    <script src="~/Scripts/angular.js"></script>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -29,6 +30,8 @@
     <link rel="stylesheet" href="~/Content/plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="~/Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <script src="~/Scripts/controller/logins.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -288,8 +291,8 @@
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
-                                    <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <div class="pull-right" ng-controller="logonservices">
+                                        <a href="#" class="btn btn-default btn-flat" ng-click="logout()">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
