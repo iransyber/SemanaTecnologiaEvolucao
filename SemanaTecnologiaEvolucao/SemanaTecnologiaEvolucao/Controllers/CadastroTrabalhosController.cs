@@ -6,8 +6,9 @@ using System.Web.Mvc;
 
 namespace SemanaTecnologiaEvolucao.Controllers
 {
-    public class HomeController : Controller
+    public class CadastroTrabalhosController : Controller
     {
+        // GET: CadastroTrabalhos
         public ActionResult Index()
         {
             return View();

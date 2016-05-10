@@ -1,10 +1,21 @@
 ﻿<!DOCTYPE html>
-<html ng-app="appapi">
+<html data-ng-app="AngularAuthApp">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Dashboard</title>
     <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/angular-local-storage.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/loading-bar.min.js"></script>
+    <script src="~/Scripts/app/appGeral.js"></script>
+    <script src="~/Scripts/app/services/authInterceptorService.js"></script>
+    <script src="~/Scripts/app/services/signupController.js"></script>
+    <script src="~/Scripts/app/controller/loginController.js"></script>
+    <script src="~/Scripts/app/services/authService.js"></script>
+    <script src="~/Scripts/app/controller/associateController.js"></script>
+    <script src="~/Scripts/app/controller/indexController.js"></script>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -30,15 +41,13 @@
     <link rel="stylesheet" href="~/Content/plugins/daterangepicker/daterangepicker-bs3.css">
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="~/Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-    <script src="~/Scripts/controller/logins.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         var appInsights = window.appInsights || function(config) {
              function r(config) { t[config] = function() {
                   var i = arguments; t.queue.push(function() {
@@ -47,7 +56,7 @@
              } } var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f; for (s.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) r("track" + i.pop()); return r("setAuthenticatedUserContext"), r("clearAuthenticatedUserContext"), config.disableExceptionTracking || (i = "onerror", r("_" + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t["_" + i](config, r, u, e, o), s }), t
         }({ instrumentationKey: "c4ea5091-1381-4efa-9c12-fbabfa9ffadc" });
         window.appInsights = appInsights; appInsights.trackPageView();
-    </script>
+    </script>*@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -291,8 +300,8 @@
                                     <div class="pull-left">
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div>
-                                    <div class="pull-right" ng-controller="logonservices">
-                                        <a href="#" class="btn btn-default btn-flat" ng-click="logout()">Sign out</a>
+                                    <div class="pull-right" data-ng-controller="indexController">
+                                        <a href="#" class="btn btn-default btn-flat" data-ng-click="logOut()">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
