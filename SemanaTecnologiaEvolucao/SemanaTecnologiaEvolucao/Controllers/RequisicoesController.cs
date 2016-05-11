@@ -13,7 +13,7 @@ using SemanaTecnologiaEvolucao.Models;
 namespace SemanaTecnologiaEvolucao.Controllers
 {
     [Authorize]
-    [RoutePrefix("Api")]
+    [RoutePrefix("Api/trabalhos")]
     public class RequisicoesController : ApiController
     {
         private Interfaces.ITrabalhos interfa;

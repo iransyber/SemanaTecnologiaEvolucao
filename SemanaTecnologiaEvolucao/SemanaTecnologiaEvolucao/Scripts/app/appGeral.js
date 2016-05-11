@@ -1,4 +1,4 @@
-﻿var appGeral = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar']);
+﻿var appGeral = angular.module('AngularAuthApp', ['ngRoute', 'LocalStorageModule', 'angular-loading-bar', 'ngCookies']);
 
 appGeral.config(function ($routeProvider) {
 
@@ -17,15 +17,10 @@ appGeral.config(function ($routeProvider) {
         templateUrl: "views/CadastroTrabalhos/Index.html"
     });
 
-    //$routeProvider.when("/orders", {
-    //    controller: "ordersController",
-    //    templateUrl: "/app/views/orders.html"
-    //});
-
     $routeProvider.otherwise({ redirectTo: "/Home" });
 });
 
-var serviceBase = 'http://localhost:3966';
+var serviceBase = 'http://localhost:3966/';
 appGeral.constant('ngAuthSettings', {
     apiServiceBaseUri: serviceBase,
     clientId: 'ngAuthApp'

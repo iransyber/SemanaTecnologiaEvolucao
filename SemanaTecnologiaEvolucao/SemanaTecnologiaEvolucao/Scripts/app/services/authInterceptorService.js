@@ -1,5 +1,5 @@
 ﻿'use strict';
-appGeral.factory('authInterceptorService', ['$q', '$location', 'localStorageService', function ($q, $location, localStorageService) {
+appGeral.factory('authInterceptorService', ['$q', '$location', 'localStorageService', '$cookieStore', function ($q, $location, localStorageService) {
 
     var authInterceptorServiceFactory = {};
 
@@ -17,7 +17,8 @@ appGeral.factory('authInterceptorService', ['$q', '$location', 'localStorageServ
 
     var _responseError = function (rejection) {
         if (rejection.status === 401) {
-            $location.path('/Home');
+            //$location.path('/Home');
+            window.location.href = '/Home';
         }
         return $q.reject(rejection);
     }

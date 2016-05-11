@@ -12,7 +12,7 @@ namespace SemanaTecnologiaEvolucao.Controllers
     public class DashboardController : Controller
     {
         // GET: dashboard
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public ActionResult Index()
         {
             return View();

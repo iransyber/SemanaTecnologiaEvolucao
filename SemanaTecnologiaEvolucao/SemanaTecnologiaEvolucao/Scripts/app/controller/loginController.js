@@ -1,6 +1,8 @@
 ﻿'use strict';
 appGeral.controller('loginController', ['$scope', '$location', 'authService', 'ngAuthSettings', function ($scope, $location, authService, ngAuthSettings) {
 
+    $scope.usuario = "";
+
     $scope.loginData = {
         userName: "",
         password: "",
@@ -13,9 +15,9 @@ appGeral.controller('loginController', ['$scope', '$location', 'authService', 'n
 
         authService.login($scope.loginData).then(function (response) {
 
-            $location.path('/Dashboard');
-                $location.url.href = 'http://localhost:3966/Dashboard';
-            console.log($location.url.href);
+            //$location.path('/Dashboard');
+            window.location.href = '/Dashboard';
+            $scope.usuario = response.userName;
 
             },
          function (err) {
@@ -49,7 +51,8 @@ appGeral.controller('loginController', ['$scope', '$location', 'authService', 'n
                     externalAccessToken: fragment.external_access_token
                 };
 
-                $location.path('/associate');
+                //$location.path('/associate');
+                window.location.href = '/associate';
 
             }
             else {
@@ -57,7 +60,8 @@ appGeral.controller('loginController', ['$scope', '$location', 'authService', 'n
                 var externalData = { provider: fragment.provider, externalAccessToken: fragment.external_access_token };
                 authService.obtainAccessToken(externalData).then(function (response) {
 
-                    $location.path('/Dashboard');
+                    //$location.path('/Dashboard');
+                    window.location.href = '/Dashboard';
 
                 },
              function (err) {

@@ -1176,7 +1176,7 @@
     <Content Include="Scripts\app\controller\associateController.js" />
     <Content Include="Scripts\app\controller\indexController.js" />
     <Content Include="Scripts\app\controller\loginController.js" />
-    <Content Include="Scripts\app\controller\logins.js" />
+    <Content Include="Scripts\app\controller\trabalhoController.js" />
     <Content Include="Scripts\app\services\authInterceptorService.js" />
     <Content Include="Scripts\app\services\authService.js" />
     <Content Include="Scripts\app\services\signupController.js" />

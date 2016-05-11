@@ -1,5 +1,5 @@
 ﻿'use strict';
-appGeral.factory('authService', ['$http', '$q', 'localStorageService', function ($http, $q, localStorageService) {
+appGeral.factory('authService', ['$http', '$q', 'localStorageService', '$cookieStore', '$cookies', function ($http, $q, localStorageService, $cookieStore, $cookies) {
 
     var serviceBase = 'http://localhost:3966/';
     var authServiceFactory = {};
@@ -27,11 +27,10 @@ appGeral.factory('authService', ['$http', '$q', 'localStorageService', function 
 
         $http.post(serviceBase + '/token', data, { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
-            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
+            localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName, nomeDescricao: response.userName});
 
             _authentication.isAuth = true;
             _authentication.userName = loginData.userName;
-
             deferred.resolve(response);
 
         }).error(function (err, status) {
@@ -40,26 +39,32 @@ appGeral.factory('authService', ['$http', '$q', 'localStorageService', function 
         });
 
         return deferred.promise;
-
     };
 
     var _logOut = function () {
 
-        localStorageService.remove('authorizationData');
+        var authData = localStorageService.get('authorizationData');
 
+        if (authData != null) {
+            $http({
+                method: 'POST',
+                url: serviceBase + 'api/account/Logout',
+                headers: { 'Authorization': 'bearer ' + authData.token }
+            });
+        }
+        localStorageService.remove('authorizationData');       
         _authentication.isAuth = false;
         _authentication.userName = "";
-
+        //$location.path('/Dashboard');
+        window.location.href = '/Home';
     };
 
     var _fillAuthData = function () {
-
         var authData = localStorageService.get('authorizationData');
         if (authData) {
             _authentication.isAuth = true;
             _authentication.userName = authData.userName;
         }
-
     }
 
     authServiceFactory.saveRegistration = _saveRegistration;
@@ -67,6 +72,5 @@ appGeral.factory('authService', ['$http', '$q', 'localStorageService', function 
     authServiceFactory.logOut = _logOut;
     authServiceFactory.fillAuthData = _fillAuthData;
     authServiceFactory.authentication = _authentication;
-
     return authServiceFactory;
 }]);
