@@ -12,7 +12,7 @@ namespace SemanaTecnologiaEvolucao.Controllers
         public MongoDatabase database;
         public BaseController()
         {
-            const string connectionstring = "mongodb://iransyber:Iran10301988@ds021771.mlab.com:21771/iransyberdb?connectTimeoutMS=30000&authMechanism=SCRAM-SHA-1";
+            const string connectionstring = "mongodb://iransyber:Iran10301988@ds021771.mlab.com:21771/iransyberdb?connectTimeoutMS=90000&authMechanism=SCRAM-SHA-1";
             var client = new MongoClient(connectionstring);
             var server = client.GetServer();
             database = server.GetDatabase("iransyberdb");
