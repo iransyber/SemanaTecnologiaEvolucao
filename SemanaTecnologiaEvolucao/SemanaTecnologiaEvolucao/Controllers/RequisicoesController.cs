@@ -31,14 +31,22 @@ namespace SemanaTecnologiaEvolucao.Controllers
             return Json(resultado);
         }
 
-        [Route("filtrar/{param:length(1,20)}")]
+        [Route("filtrar/{param:length(1,60)}")]
         [HttpGet]
         public JsonResult<List<Trabalhos>> FiltrarTrabalhos(string param)
         {
             var resultado = interfa.FiltrarTrabalhos(param);
             return Json(resultado);
         }
-        
+
+        [Route("info/{param:length(1,60)}")]
+        [HttpGet]
+        public JsonResult<List<Trabalhos>> InfoTrabalhos(string param)
+        {
+            var resultado = interfa.InfoTrabalhos(param);
+            return Json(resultado);
+        }
+
         [Route("incluir")]
         [HttpPost]
         public JsonResult<List<Trabalhos>> FiltrarTrabalhos([FromBody] Trabalhos trabalho)

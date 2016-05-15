@@ -1,0 +1,100 @@
+﻿@Scripts.Render("~/Scripts/app/controller/trabalhoController.js")
+
+@{
+    ViewBag.Title = "Trabalhos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Trabalhos Semana da Tecnologia</h2>
+<div data-ng-controller="trabalhoController">
+    <div ng-init="listarTrabalhos()"></div>
+    <input type="button" class="btn-facebook" value="Adicionar" data-ng-click=""/>
+    <br/>
+    <br/>
+    <label for="pes" class="label-default">Filtrar:</label>
+    <input type="search" class="form-control" ng-model="pesquisa" name="pes" width="50"/>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+        </tr>
+        <tr>
+            <th>Tema</th>
+            <th>Dt. Apresentação</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="trb in trabalhos | filter: pesquisa track by trb.contador">
+            <td>{{trb.Tema}}</td>
+            <td>{{trb.DataApresentacao  | date:'dd-MM-yyyy'}}</td>
+            <td>{{trb.Ativo}}</td>
+            <td><button class="btn btn-block btn-info" data-toggle="modal" data-target="#ModalInformacao" ng-click="visualizar(trb.Id)">Info</button></td>
+            <td><button class="btn btn-block btn-primary"  data-toggle="modal" data-target="#ModalEdicao" ng-click="visualizar(trb.Id)">Editar</button></td>
+            <td><button class="btn btn-block btn-danger">Excluir</button></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Modal Para Informações do trabalho-->
+    <div class="modal fade" id="ModalInformacao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Trabalho: {{infotrabalho.Tema}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p><small>Tema:</small> {{infotrabalho.Tema}}
+                    </p>
+                    <p><small>Descricao</small> {{infotrabalho.Descricao}}
+                    </p>
+                    <p><small>Data</small> {{infotrabalho.DataApresentacao  | date:'dd-MM-yyyy'}}
+                    </p>
+                    <p><small>Status</small> {{infotrabalho.Ativo}}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Para Inclusão do trabalho-->
+    <div class="modal fade" id="ModalEdicao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabelInclusao">Trabalho: {{infotrabalho.Tema}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Editar Trabalho</h3>
+                        </div>
+                        <div class="box-body">
+                            <label for="Tema" class="control-label">Tema</label>
+                            <input class="form-control input-lg" type="text" placeholder="Tema do Trabalho" id="Tema" value="{{infotrabalho.Tema}}">
+                            <br>
+                            <label for="descricao" class="control-label">Descrição</label>
+                            <textarea class="form-control" rows="3" placeholder="Descrição ..." id="descricao">{{infotrabalho.Descricao}}</textarea>
+                            <br>
+                            <label for="apresentacao" class="control-label">Data de Apresentação</label>
+                            <input class="form-control" type="date" placeholder="Default input" id="apresentacao" value="{{infotrabalho.DataApresentacao | date:'yyyy-MM-dd'}}">
+                            <br>
+                            <label>
+                                <input type="checkbox" checked="{{infotrabalho.Ativo}}">
+                                Ativo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,5 +15,6 @@ namespace SemanaTecnologiaEvolucao.Interfaces
         List<Trabalhos> ListarApresentacoesAssync();
         List<Trabalhos> Inserir(Trabalhos trabalho);
         void Alterar(RecepTrabalhos trabalho);
+        List<Trabalhos> InfoTrabalhos(string param);
     }
 }

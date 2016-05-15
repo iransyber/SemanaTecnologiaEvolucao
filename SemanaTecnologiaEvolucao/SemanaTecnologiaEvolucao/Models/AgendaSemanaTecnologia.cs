@@ -34,6 +34,15 @@ namespace SemanaTecnologiaEvolucao.Models
 
             return r.ToList();
         }
+
+        public List<Trabalhos> InfoTrabalhos(string param)
+        {
+            var quer = Query.EQ("_id", ObjectId.Parse(param));
+            var trab = database.GetCollection<Trabalhos>("Trabalhos");
+            var r = trab.Find(quer);
+
+            return r.ToList();
+        }
         
         public List<Trabalhos> Inserir(Trabalhos trabalho)
         {
