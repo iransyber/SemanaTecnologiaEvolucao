@@ -7,7 +7,9 @@ appGeral.controller('trabalhoController', function ($scope, $http) {
         Tema: "",
         Descricao: "",
         DataApresentacao: "",
-        Ativo:false
+        Ativo: false,
+        Status: "",
+        css:""
     }
     $scope.trabalhos = [];
     $scope.infotrabalho = {
@@ -31,7 +33,13 @@ appGeral.controller('trabalhoController', function ($scope, $http) {
                 trabalho.Tema = data[key].Tema;
                 trabalho.Descricao = data[key].Descricao;
                 trabalho.DataApresentacao = data[key].DataApresentacao;
-                trabalho.Ativo = data[key].Ativo;
+                if (data[key].Ativo == true) {
+                    trabalho.Status = "Ativo";
+                    trabalho.css = "label label-success";
+                } else {
+                    trabalho.css = "label label-danger";
+                    trabalho.Status = "Inativo";
+                }
 
                 $scope.trabalhos.push(angular.copy(trabalho));
             });
@@ -53,6 +61,35 @@ appGeral.controller('trabalhoController', function ($scope, $http) {
                 $scope.infotrabalho.Ativo = data[key].Ativo;
             });
             return $scope.infotrabalho;
+        });
+    }
+
+    $scope.editar = function (trabalho) {
+        $http({
+            url: 'Api/trabalhos/editar',
+            method: 'POST',
+            data: trabalho
+        }).success(function (data) {
+            $scope.listarTrabalhos();
+        });
+    }
+
+    $scope.incluir = function (trabalho) {
+        $http({
+            url: 'Api/trabalhos/incluir',
+            method: 'POST',
+            data: trabalho
+        }).success(function (data) {
+            $scope.listarTrabalhos();
+        });
+    }
+
+    $scope.excluir = function (codigo) {
+        $http({
+            url: 'Api/trabalhos/excluir/'+codigo,
+            method: 'POST'
+        }).success(function (data) {
+            $scope.listarTrabalhos();
         });
     }
 });

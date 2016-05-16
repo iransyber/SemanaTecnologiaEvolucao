@@ -7,7 +7,7 @@
 <h2>Trabalhos Semana da Tecnologia</h2>
 <div data-ng-controller="trabalhoController">
     <div ng-init="listarTrabalhos()"></div>
-    <input type="button" class="btn-facebook" value="Adicionar" data-ng-click=""/>
+    <input type="button" class="btn-facebook" value="Adicionar" data-toggle="modal" data-target="#ModalInclusao"/>
     <br/>
     <br/>
     <label for="pes" class="label-default">Filtrar:</label>
@@ -26,10 +26,10 @@
         <tr ng-repeat="trb in trabalhos | filter: pesquisa track by trb.contador">
             <td>{{trb.Tema}}</td>
             <td>{{trb.DataApresentacao  | date:'dd-MM-yyyy'}}</td>
-            <td>{{trb.Ativo}}</td>
+            <td><p class="{{trb.css}}">{{trb.Status}}</p></td>
             <td><button class="btn btn-block btn-info" data-toggle="modal" data-target="#ModalInformacao" ng-click="visualizar(trb.Id)">Info</button></td>
-            <td><button class="btn btn-block btn-primary"  data-toggle="modal" data-target="#ModalEdicao" ng-click="visualizar(trb.Id)">Editar</button></td>
-            <td><button class="btn btn-block btn-danger">Excluir</button></td>
+            <td><button class="btn btn-block btn-primary" data-toggle="modal" data-target="#ModalEdicao" ng-click="visualizar(trb.Id)">Editar</button></td>
+            <td><button class="btn btn-block btn-danger" ng-click="excluir(trb.Id)" >Excluir</button></td>
         </tr>
         </tbody>
     </table>
@@ -60,13 +60,13 @@
         </div>
     </div>
 
-    <!-- Modal Para Inclusão do trabalho-->
+    <!-- Modal Para Edição do trabalho-->
     <div class="modal fade" id="ModalEdicao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabelInclusao">Trabalho: {{infotrabalho.Tema}}</h4>
+                    <h4 class="modal-title" id="myModalLabelEdicao" ng-model="infotrabalho.Id">Trabalho: {{infotrabalho.Tema}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="box box-success">
@@ -75,16 +75,16 @@
                         </div>
                         <div class="box-body">
                             <label for="Tema" class="control-label">Tema</label>
-                            <input class="form-control input-lg" type="text" placeholder="Tema do Trabalho" id="Tema" value="{{infotrabalho.Tema}}">
+                            <input class="form-control input-lg" type="text" placeholder="Tema do Trabalho" id="Tema" value="{{infotrabalho.Tema}}" ng-model="infotrabalho.Tema">
                             <br>
                             <label for="descricao" class="control-label">Descrição</label>
-                            <textarea class="form-control" rows="3" placeholder="Descrição ..." id="descricao">{{infotrabalho.Descricao}}</textarea>
+                            <textarea class="form-control" rows="3" placeholder="Descrição ..." id="descricao" ng-model="infotrabalho.Descricao">{{infotrabalho.Descricao}}</textarea>
                             <br>
                             <label for="apresentacao" class="control-label">Data de Apresentação</label>
                             <input class="form-control" type="date" placeholder="Default input" id="apresentacao" value="{{infotrabalho.DataApresentacao | date:'yyyy-MM-dd'}}">
                             <br>
                             <label>
-                                <input type="checkbox" checked="{{infotrabalho.Ativo}}">
+                                <input type="checkbox" checked="{{infotrabalho.Ativo}}" ng-model="infotrabalho.Ativo">
                                 Ativo
                             </label>
                         </div>
@@ -92,7 +92,44 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    <button type="button" class="btn btn-primary">Salvar Alterações</button>
+                    <button type="button" class="btn btn-primary" ng-click="editar(infotrabalho)" data-dismiss="modal">Salvar Alterações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Para Inclusao do trabalho-->
+    <div class="modal fade" id="ModalInclusao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabelInclusao">Semana da Tecnologia</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="box box-success">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Editar Trabalho</h3>
+                        </div>
+                        <div class="box-body">
+                            <label for="Tema" class="control-label">Tema</label>
+                            <input class="form-control input-lg" type="text" placeholder="Tema do Trabalho" id="Tema" value="{{infotrabalho.Tema}}" ng-model="infotrabalho.Tema">
+                            <br>
+                            <label for="descricao" class="control-label">Descrição</label>
+                            <textarea class="form-control" rows="3" placeholder="Descrição ..." id="descricao" ng-model="infotrabalho.Descricao">{{infotrabalho.Descricao}}</textarea>
+                            <br>
+                            <label for="apresentacao" class="control-label">Data de Apresentação</label>
+                            <input class="form-control" type="date" placeholder="Default input" id="apresentacao" value="{{infotrabalho.DataApresentacao | date:'yyyy-MM-dd'}}">
+                            <br>
+                            <label>
+                                <input type="checkbox" checked="{{infotrabalho.Ativo}}" ng-model="infotrabalho.Ativo">
+                                Ativo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" ng-click="incluir(infotrabalho)" data-dismiss="modal">Salvar Alterações</button>
                 </div>
             </div>
         </div>

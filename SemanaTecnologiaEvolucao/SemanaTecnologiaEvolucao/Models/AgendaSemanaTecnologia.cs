@@ -78,5 +78,13 @@ namespace SemanaTecnologiaEvolucao.Models
 
             trab.Update(Query.EQ("_id", ObjectId.Parse(trabalho.Id)), Update.Replace(t.ToBsonDocument()), UpdateFlags.Upsert);
         }
+
+
+        public void Excluir(string codigo)
+        {
+            var trab = database.GetCollection<Trabalhos>("Trabalhos");
+            var quer = Query.EQ("_id", ObjectId.Parse(codigo));
+            trab.Remove(quer);           
+        }
     }
 }

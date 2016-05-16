@@ -16,5 +16,6 @@ namespace SemanaTecnologiaEvolucao.Interfaces
         List<Trabalhos> Inserir(Trabalhos trabalho);
         void Alterar(RecepTrabalhos trabalho);
         List<Trabalhos> InfoTrabalhos(string param);
+        void Excluir(string codigo);
     }
 }

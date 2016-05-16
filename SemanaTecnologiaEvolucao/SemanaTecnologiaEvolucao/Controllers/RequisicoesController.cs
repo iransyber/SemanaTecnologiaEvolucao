@@ -57,9 +57,16 @@ namespace SemanaTecnologiaEvolucao.Controllers
 
         [Route("editar")]
         [HttpPost]
-        public void editar([FromBody] RecepTrabalhos trabalho)
+        public void Editar([FromBody] RecepTrabalhos trabalho)
         {
             interfa.Alterar(trabalho);
+        }
+
+        [Route("excluir/{param:length(1,60)}")]
+        [HttpPost]
+        public void Excluir(string param)
+        {
+            interfa.Excluir(param);
         }
     }
 }
